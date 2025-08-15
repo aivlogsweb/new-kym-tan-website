@@ -1,0 +1,21 @@
+# Development files
+.DS_Store
+*.log
+node_modules/
+.env
+.env.local
+
+# Backup files
+*.bak
+*~
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini

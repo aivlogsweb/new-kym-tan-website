@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Test for KYM-Tan Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .pass { background: #d4edda; }
+        .fail { background: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>Mobile Compatibility Test</h1>
+    <div id="viewport-test" class="test-item">
+        <strong>Viewport:</strong> <span id="viewport-size"></span>
+    </div>
+    <div id="touch-test" class="test-item">
+        <strong>Touch Support:</strong> <span id="touch-support"></span>
+    </div>
+    <div id="performance-test" class="test-item">
+        <strong>Load Performance:</strong> <span id="load-time"></span>
+    </div>
+    
+    <script>
+        // Test viewport
+        document.getElementById('viewport-size').textContent = 
+            window.innerWidth + 'x' + window.innerHeight;
+        document.getElementById('viewport-test').className += 
+            window.innerWidth < 768 ? ' pass' : ' fail';
+        
+        // Test touch support  
+        const hasTouch = 'ontouchstart' in window;
+        document.getElementById('touch-support').textContent = hasTouch ? 'Yes' : 'No';
+        document.getElementById('touch-test').className += hasTouch ? ' pass' : ' fail';
+        
+        // Test performance
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            document.getElementById('load-time').textContent = loadTime.toFixed(2) + 'ms';
+            document.getElementById('performance-test').className += 
+                loadTime < 3000 ? ' pass' : ' fail';
+        });
+    </script>
+</body>
+</html>

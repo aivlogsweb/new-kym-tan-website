@@ -1,0 +1,398 @@
+/* ========================================
+   Additional Styles for Interactive Components
+   Lightbox, Notifications, and Form Styles
+   ======================================== */
+
+/* ========================================
+   Lightbox Styles
+   ======================================== */
+
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: var(--pure-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-heavy);
+    overflow: hidden;
+    animation: lightboxSlideIn 0.4s ease-out;
+}
+
+@keyframes lightboxSlideIn {
+    from {
+        transform: scale(0.8) translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--pure-white);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.lightbox-image {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+}
+
+.lightbox-info {
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.lightbox-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.lightbox-description {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+}
+
+.lightbox-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: var(--pure-white);
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-glow);
+}
+
+.lightbox-counter {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ========================================
+   Notification Styles
+   ======================================== */
+
+.wallet-notification {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: var(--pure-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-heavy);
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+    border-left: 4px solid var(--primary-gold);
+}
+
+.wallet-notification.show {
+    transform: translateX(0);
+}
+
+.wallet-notification.success {
+    border-left-color: #10b981;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.notification-text {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* ========================================
+   Form Enhancement Styles
+   ======================================== */
+
+.form-errors {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    animation: slideInFromTop 0.3s ease-out;
+}
+
+.form-errors ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.form-errors li {
+    color: #dc2626;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.form-errors li:last-child {
+    margin-bottom: 0;
+}
+
+.form-errors li::before {
+    content: '⚠️ ';
+    margin-right: var(--spacing-xs);
+}
+
+.form-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    animation: slideInFromTop 0.3s ease-out;
+}
+
+.form-success p {
+    color: #059669;
+    font-weight: 500;
+    margin: 0;
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Loading Enhancements
+   ======================================== */
+
+.loading-content {
+    position: relative;
+}
+
+.loading-text.anime-text {
+    background: linear-gradient(45deg, var(--primary-gold), var(--primary-blue), var(--primary-gold));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ========================================
+   Enhanced Particle Styles
+   ======================================== */
+
+.particle.heart {
+    width: 8px !important;
+    height: 8px !important;
+    background: #ff6b9d !important;
+    position: relative;
+}
+
+.particle.heart::before,
+.particle.heart::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    background: #ff6b9d;
+    border-radius: 8px 8px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.particle.heart::after {
+    left: 4px;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.particle.star {
+    background: var(--primary-blue) !important;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* ========================================
+   Responsive Lightbox
+   ======================================== */
+
+@media (max-width: 768px) {
+    .lightbox-content {
+        max-width: 95vw;
+        max-height: 95vh;
+        margin: var(--spacing-md);
+    }
+    
+    .lightbox-image {
+        max-height: 60vh;
+    }
+    
+    .lightbox-info {
+        padding: var(--spacing-md);
+    }
+    
+    .lightbox-nav {
+        padding: 0 var(--spacing-md) var(--spacing-md);
+    }
+    
+    .lightbox-title {
+        font-size: 1.2rem;
+    }
+    
+    .wallet-notification {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+        right: 1rem;
+        transform: translateY(-100%);
+    }
+    
+    .wallet-notification.show {
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Accessibility Improvements
+   ======================================== */
+
+.lightbox-close:focus,
+.lightbox-prev:focus,
+.lightbox-next:focus {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 2px;
+}
+
+.wallet-notification[role="alert"] {
+    /* Screen reader announcement */
+}
+
+/* ========================================
+   Dark Mode Support (Future Enhancement)
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+    .lightbox-content {
+        background: #1f2937;
+        color: var(--text-light);
+    }
+    
+    .lightbox-title {
+        color: var(--text-light);
+    }
+    
+    .lightbox-description {
+        color: #9ca3af;
+    }
+    
+    .form-errors {
+        background: rgba(239, 68, 68, 0.2);
+        border-color: rgba(239, 68, 68, 0.4);
+    }
+    
+    .form-success {
+        background: rgba(16, 185, 129, 0.2);
+        border-color: rgba(16, 185, 129, 0.4);
+    }
+    
+    .wallet-notification {
+        background: #374151;
+        color: var(--text-light);
+    }
+}
+
+/* ========================================
+   Print Styles for Interactive Elements
+   ======================================== */
+
+@media print {
+    .lightbox-overlay,
+    .wallet-notification,
+    .form-errors,
+    .form-success {
+        display: none !important;
+    }
+}
