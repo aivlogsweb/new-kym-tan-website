@@ -324,7 +324,18 @@ class AnimationController {
                 current = target;
                 clearInterval(timer);
             }
-            element.textContent = Math.floor(current).toLocaleString();
+            
+            // Format numbers properly
+            let displayValue;
+            if (current >= 1000000) {
+                displayValue = (current / 1000000).toFixed(1) + 'M';
+            } else if (current >= 1000) {
+                displayValue = (current / 1000).toFixed(0) + 'K';
+            } else {
+                displayValue = Math.floor(current).toString();
+            }
+            
+            element.textContent = displayValue;
         }, 20);
         
         element.dataset.animated = 'true';
