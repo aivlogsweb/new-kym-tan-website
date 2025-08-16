@@ -1,0 +1,15 @@
+{
+  "name": "kym-tan-modular-website",
+  "version": "1.0.0",
+  "description": "A sophisticated, anime-inspired landing page for the $KYM-Tan memecoin on Solana. Built with modular architecture, advanced animations, and responsive design.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

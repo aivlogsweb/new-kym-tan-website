@@ -593,6 +593,10 @@ class KYMTanApp {
             scrollEffects: new ScrollEffects()
         };
         
+        // Initialize bags.fm API integration
+        this.bagsAPI = new window.BagsAPI('bags_prod_ZO5N-h9Am-2hLjUljh1CUjTpn0oC6lVvNqQOff5SC3Q');
+        this.fundsTrackingInterval = null;
+        
         this.isInitialized = false;
     }
     
@@ -629,6 +633,9 @@ class KYMTanApp {
         
         // Start animations and effects
         this.components.animationController.observeElements();
+        
+        // Initialize bags.fm fund tracking
+        this.initializeFundsTracking();
     }
     
     setupGlobalEventListeners() {
@@ -662,10 +669,74 @@ class KYMTanApp {
     }
     
     handleVisibilityChange() {
-        // Visibility change handling simplified - no components to pause/resume
+        // Pause/resume funds tracking based on page visibility
+        if (document.hidden && this.fundsTrackingInterval) {
+            clearInterval(this.fundsTrackingInterval);
+            this.fundsTrackingInterval = null;
+        } else if (!document.hidden && !this.fundsTrackingInterval) {
+            this.initializeFundsTracking();
+        }
+    }
+    
+    /**
+     * Initialize bags.fm funds tracking
+     */
+    initializeFundsTracking() {
+        if (!this.bagsAPI) return;
+        
+        const fundsElement = Utils.$('#fundsRaised');
+        const sourceElement = Utils.$('#fundsSource');
+        
+        if (!fundsElement) return;
+        
+        // Update funds display callback
+        const updateFundsDisplay = (fundsData) => {
+            if (fundsElement) {
+                fundsElement.textContent = fundsData.formatted;
+                
+                // Add status classes for visual feedback
+                fundsElement.classList.remove('error', 'loading');
+                if (fundsData.error) {
+                    fundsElement.classList.add('error');
+                    fundsElement.title = `Error: ${fundsData.error}`;
+                } else {
+                    fundsElement.title = `Last updated: ${new Date(fundsData.lastUpdated).toLocaleTimeString()}`;
+                }
+            }
+            
+            if (sourceElement) {
+                const sourceText = fundsData.source === 'error' ? 'connection issue' : 
+                                 fundsData.source === 'fallback' ? 'estimated' : 'via bags.fm';
+                sourceElement.textContent = sourceText;
+            }
+        };
+        
+        // Show loading state initially
+        if (fundsElement) {
+            fundsElement.textContent = 'Loading...';
+            fundsElement.classList.add('loading');
+        }
+        
+        // Start tracking with 60-second intervals
+        this.fundsTrackingInterval = this.bagsAPI.startTracking(updateFundsDisplay, 60000);
+        
+        console.log('bags.fm funds tracking initialized');
+    }
+    
+    /**
+     * Stop funds tracking
+     */
+    stopFundsTracking() {
+        if (this.fundsTrackingInterval) {
+            clearInterval(this.fundsTrackingInterval);
+            this.fundsTrackingInterval = null;
+        }
     }
     
     destroy() {
+        // Stop funds tracking
+        this.stopFundsTracking();
+        
         // Cleanup all components
         Object.values(this.components).forEach(component => {
             if (typeof component.destroy === 'function') {

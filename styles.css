@@ -226,6 +226,60 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================
+   Top Navigation
+   ======================================== */
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(30, 58, 138, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    padding: var(--spacing-sm) 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.kym-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--pure-white);
+    text-decoration: none;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    transition: all var(--transition-smooth);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.kym-link:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+}
+
+.kym-icon {
+    font-size: 1.1rem;
+}
+
+.kym-text {
+    font-family: var(--font-primary);
+}
+
+/* ========================================
    Hero Section
    ======================================== */
 
@@ -509,6 +563,27 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
     margin-bottom: var(--spacing-sm);
     font-family: var(--font-anime);
+    transition: all var(--transition-smooth);
+}
+
+.stat-number.loading {
+    color: var(--primary-blue);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.stat-number.error {
+    color: #ef4444;
+}
+
+.funds-raised-card {
+    position: relative;
+}
+
+.funds-raised-card .stat-description {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    font-style: italic;
 }
 
 .stat-label {
