@@ -684,37 +684,37 @@ class KYMTanApp {
     initializeFundsTracking() {
         if (!this.bagsAPI) return;
         
-        const fundsElement = Utils.$('#fundsRaised');
-        const sourceElement = Utils.$('#fundsSource');
+        const fundsElementTop = Utils.$('#fundsRaisedTop');
+        const sourceElementTop = Utils.$('#fundsSourceTop');
         
-        if (!fundsElement) return;
+        if (!fundsElementTop) return;
         
         // Update funds display callback
         const updateFundsDisplay = (fundsData) => {
-            if (fundsElement) {
-                fundsElement.textContent = fundsData.formatted;
+            if (fundsElementTop) {
+                fundsElementTop.textContent = fundsData.formatted;
                 
                 // Add status classes for visual feedback
-                fundsElement.classList.remove('error', 'loading');
+                fundsElementTop.classList.remove('error', 'loading');
                 if (fundsData.error) {
-                    fundsElement.classList.add('error');
-                    fundsElement.title = `Error: ${fundsData.error}`;
+                    fundsElementTop.classList.add('error');
+                    fundsElementTop.title = `Error: ${fundsData.error}`;
                 } else {
-                    fundsElement.title = `Last updated: ${new Date(fundsData.lastUpdated).toLocaleTimeString()}`;
+                    fundsElementTop.title = `Last updated: ${new Date(fundsData.lastUpdated).toLocaleTimeString()}`;
                 }
             }
             
-            if (sourceElement) {
+            if (sourceElementTop) {
                 const sourceText = fundsData.source === 'error' ? 'connection issue' : 
                                  fundsData.source === 'fallback' ? 'estimated' : 'via bags.fm';
-                sourceElement.textContent = sourceText;
+                sourceElementTop.textContent = sourceText;
             }
         };
         
         // Show loading state initially
-        if (fundsElement) {
-            fundsElement.textContent = 'Loading...';
-            fundsElement.classList.add('loading');
+        if (fundsElementTop) {
+            fundsElementTop.textContent = 'Loading...';
+            fundsElementTop.classList.add('loading');
         }
         
         // Start tracking with 60-second intervals

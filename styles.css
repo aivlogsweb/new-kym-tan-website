@@ -246,7 +246,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .kym-link {
@@ -277,6 +278,66 @@ h1, h2, h3, h4, h5, h6 {
 
 .kym-text {
     font-family: var(--font-primary);
+}
+
+/* Funds Tracker */
+.funds-tracker {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.funds-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+}
+
+.funds-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.funds-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.funds-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+    font-family: var(--font-anime);
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-smooth);
+}
+
+.funds-amount.loading {
+    color: var(--primary-blue);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.funds-amount.error {
+    color: #ef4444;
+    font-size: 1.2rem;
+}
+
+.funds-source {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    margin: 0;
 }
 
 /* ========================================
@@ -566,25 +627,6 @@ h1, h2, h3, h4, h5, h6 {
     transition: all var(--transition-smooth);
 }
 
-.stat-number.loading {
-    color: var(--primary-blue);
-    animation: pulse 1.5s ease-in-out infinite;
-}
-
-.stat-number.error {
-    color: #ef4444;
-}
-
-.funds-raised-card {
-    position: relative;
-}
-
-.funds-raised-card .stat-description {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 0.25rem;
-    font-style: italic;
-}
 
 .stat-label {
     font-size: 1.1rem;
@@ -1398,6 +1440,30 @@ h1, h2, h3, h4, h5, h6 {
 
     body {
         -webkit-overflow-scrolling: touch;
+    }
+
+    /* Mobile funds tracker */
+    .nav-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: stretch;
+    }
+    
+    .funds-tracker {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+    
+    .funds-icon {
+        font-size: 1.5rem;
+    }
+    
+    .funds-amount {
+        font-size: 1.2rem;
+    }
+    
+    .funds-label {
+        font-size: 0.7rem;
     }
 
     .section {
