@@ -708,8 +708,36 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 
 .dexscreener-section {
-    background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
+    background: var(--text-dark);
     color: var(--pure-white);
+    position: relative;
+}
+
+.dexscreener-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(0, 191, 255, 0.8) 100%);
+    z-index: 1;
+}
+
+.dexscreener-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.dexscreener-section .section-title {
+    color: var(--pure-white) !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: var(--pure-white) !important;
+    background-clip: initial !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-primary);
+    font-weight: 600;
 }
 
 .trading-content {
@@ -718,6 +746,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .trading-description {
     margin-bottom: var(--spacing-xxl);
+}
+
+.dexscreener-section .lead-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 1.6;
 }
 
 .trading-widgets {
@@ -1653,6 +1691,12 @@ h1, h2, h3, h4, h5, h6 {
 
     .section-title {
         font-size: 1.8rem;
+    }
+    
+    .dexscreener-section .lead-text {
+        font-size: 1rem;
+        max-width: 100%;
+        padding: 0 var(--spacing-md);
     }
 
     .stat-number {
