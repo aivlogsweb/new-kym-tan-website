@@ -246,7 +246,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -280,62 +280,93 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
 }
 
-/* Funds Tracker */
-.funds-tracker {
+/* ========================================
+   Funds Section
+   ======================================== */
+
+.funds-section {
+    background: var(--gradient-primary);
+    padding: var(--spacing-lg) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.funds-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(0, 191, 255, 0.8) 50%, rgba(255, 215, 0, 0.9) 100%);
+    z-index: 1;
+}
+
+.funds-section .container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.funds-tracker-main {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.1);
+    gap: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
 }
 
-.funds-icon {
-    font-size: 2rem;
-    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+.funds-tracker-main .funds-icon {
+    font-size: 3rem;
+    filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.4));
 }
 
-.funds-info {
+.funds-tracker-main .funds-info {
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    gap: 0.25rem;
+    flex: 1;
 }
 
-.funds-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
+.funds-tracker-main .funds-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     margin: 0;
 }
 
-.funds-amount {
-    font-size: 1.5rem;
+.funds-tracker-main .funds-amount {
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-gold);
     font-family: var(--font-anime);
     line-height: 1;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: all var(--transition-smooth);
 }
 
-.funds-amount.loading {
+.funds-tracker-main .funds-amount.loading {
     color: var(--primary-blue);
     animation: pulse 1.5s ease-in-out infinite;
 }
 
-.funds-amount.error {
+.funds-tracker-main .funds-amount.error {
     color: #ef4444;
-    font-size: 1.2rem;
+    font-size: 2rem;
 }
 
-.funds-source {
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.6);
+.funds-tracker-main .funds-source {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
     font-style: italic;
     margin: 0;
 }
@@ -1442,28 +1473,24 @@ h1, h2, h3, h4, h5, h6 {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* Mobile funds tracker */
-    .nav-container {
+    /* Mobile funds section */
+    .funds-tracker-main {
         flex-direction: column;
-        gap: var(--spacing-sm);
-        align-items: stretch;
+        text-align: center;
+        gap: var(--spacing-md);
+        padding: var(--spacing-lg);
     }
     
-    .funds-tracker {
-        padding: var(--spacing-sm);
-        gap: var(--spacing-sm);
+    .funds-tracker-main .funds-icon {
+        font-size: 2.5rem;
     }
     
-    .funds-icon {
-        font-size: 1.5rem;
+    .funds-tracker-main .funds-amount {
+        font-size: 2rem;
     }
     
-    .funds-amount {
-        font-size: 1.2rem;
-    }
-    
-    .funds-label {
-        font-size: 0.7rem;
+    .funds-tracker-main .funds-label {
+        font-size: 0.8rem;
     }
 
     .section {
