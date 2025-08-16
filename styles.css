@@ -291,16 +291,17 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 900;
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     background: rgba(30, 58, 138, 0.95);
     backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 215, 0, 0.6);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-md) var(--spacing-lg);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    min-width: 280px;
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+    max-width: 220px;
     transition: all var(--transition-smooth);
-    opacity: 0.95;
+    opacity: 0.9;
     /* Entrance animation */
     animation: slideInFromLeft 0.8s ease-out;
 }
@@ -324,7 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .funds-tracker-floating .funds-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
     filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.5));
     animation: bounce 2s infinite;
 }
@@ -349,16 +350,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .funds-tracker-floating .funds-label {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     margin: 0;
 }
 
 .funds-tracker-floating .funds-amount {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--primary-gold);
     font-family: var(--font-anime);
@@ -374,11 +375,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .funds-tracker-floating .funds-amount.error {
     color: #ef4444;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
 
 .funds-tracker-floating .funds-source {
-    font-size: 0.65rem;
+    font-size: 0.55rem;
     color: rgba(255, 255, 255, 0.7);
     font-style: italic;
     margin: 0;
@@ -1489,31 +1490,34 @@ h1, h2, h3, h4, h5, h6 {
     /* Mobile floating funds tracker */
     .funds-tracker-floating {
         position: fixed;
-        top: 70px;
+        top: 65px;
         left: var(--spacing-sm);
-        right: var(--spacing-sm);
+        right: auto;
         width: auto;
-        min-width: auto;
+        min-width: 160px;
+        max-width: 180px;
         flex-direction: row;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-sm) var(--spacing-md);
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: var(--radius-sm);
     }
     
     .funds-tracker-floating .funds-icon {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         animation: none; /* Disable bounce on mobile for performance */
     }
     
     .funds-tracker-floating .funds-amount {
-        font-size: 1.4rem;
+        font-size: 1rem;
     }
     
     .funds-tracker-floating .funds-label {
-        font-size: 0.7rem;
+        font-size: 0.55rem;
+        letter-spacing: 0.2px;
     }
     
     .funds-tracker-floating .funds-source {
-        font-size: 0.6rem;
+        font-size: 0.5rem;
     }
 
     .section {
@@ -1608,6 +1612,32 @@ h1, h2, h3, h4, h5, h6 {
 
     .quote p {
         font-size: 1rem;
+    }
+}
+
+/* Extra small screens - minimal funds tracker */
+@media (max-width: 360px) {
+    .funds-tracker-floating {
+        min-width: 140px;
+        max-width: 150px;
+        padding: 0.4rem;
+        top: 60px;
+    }
+    
+    .funds-tracker-floating .funds-icon {
+        font-size: 1rem;
+    }
+    
+    .funds-tracker-floating .funds-amount {
+        font-size: 0.9rem;
+    }
+    
+    .funds-tracker-floating .funds-label {
+        font-size: 0.5rem;
+    }
+    
+    .funds-tracker-floating .funds-source {
+        font-size: 0.45rem;
     }
 }
 
