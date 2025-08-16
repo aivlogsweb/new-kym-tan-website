@@ -45,7 +45,7 @@
             <h1 class="hero-title anime-text">Enter the Realm of Eternal Memes</h1>
             <p class="hero-subtitle">$KYM-Tan Awakens • The Guardian of Internet Lore</p>
             <div class="hero-buttons">
-                <a href="#" class="cta-button primary" onclick="openModal()">Join the Meme Revolution</a>
+                <a href="https://dexscreener.com/solana" class="cta-button primary" target="_blank">View on DexScreener</a>
                 <a href="#lore" class="cta-button secondary">Discover Her Story</a>
             </div>
         </div>
@@ -54,56 +54,36 @@
         </div>
     </section>
 
-    <!-- Hype & Narrative Section -->
-    <section class="section hype-section" id="hype">
+    <!-- DexScreener Integration Section -->
+    <section class="section dexscreener-section" id="dexscreener">
         <div class="container">
-            <h2 class="section-title fade-in-up">The Power of KYM-Tan</h2>
-            <div class="hype-content">
-                <div class="narrative-text fade-in-up">
+            <h2 class="section-title fade-in-up">Live Trading Data</h2>
+            <div class="trading-content">
+                <div class="trading-description fade-in-up">
                     <p class="lead-text">
-                        She is not just a mascot; she is the heartbeat of meme culture. In a world of fleeting trends, 
-                        $KYM-Tan endures as the eternal guardian of digital folklore, catalyzing viral waves and 
-                        fostering unbreakable communal bonds.
+                        Track KYM-Tan's real-time performance on Solana. Join the revolution with professional-grade 
+                        trading tools and live market data.
                     </p>
                 </div>
                 
-                <div class="stats-grid">
-                    <div class="stat-card fade-in-up">
-                        <span class="stat-number" data-target="28000000">0</span>
-                        <div class="stat-label">Monthly Visits</div>
-                        <div class="stat-description">KnowYourMeme.com global reach</div>
-                    </div>
-                    <div class="stat-card fade-in-up">
-                        <span class="stat-number" data-target="2000000">0</span>
-                        <div class="stat-label">Registered Users</div>
-                        <div class="stat-description">Active meme researchers</div>
-                    </div>
-                    <div class="stat-card fade-in-up">
-                        <span class="stat-number" data-target="13000">0</span>
-                        <div class="stat-label">Documented Memes</div>
-                        <div class="stat-description">Catalogued cultural phenomena</div>
-                    </div>
-                    <div class="stat-card fade-in-up">
-                        <span class="stat-number" data-target="15">0</span>
-                        <div class="stat-label">Years of Legacy</div>
-                        <div class="stat-description">Continuous cultural guardianship</div>
-                    </div>
-                </div>
-
-                <div class="community-quotes fade-in-up">
-                    <div class="quote-carousel">
-                        <div class="quote active">
-                            <p>"Lore runs deep on #KYM-Tan – this is more than a memecoin, it's cultural preservation"</p>
-                            <cite>– @CryptoMemeologist</cite>
+                <div class="trading-widgets">
+                    <div class="widget-container fade-in-up">
+                        <div class="trading-widget">
+                            <iframe 
+                                src="https://dexscreener.com/solana/embed?theme=dark&info=0&trades=1&chart=1"
+                                frameborder="0"
+                                allowfullscreen>
+                            </iframe>
                         </div>
-                        <div class="quote">
-                            <p>"Undervalued gem. Whales accumulating quietly while normies sleep"</p>
-                            <cite>– @DegenTrader_Alpha</cite>
-                        </div>
-                        <div class="quote">
-                            <p>"15+ years of consistent community love. That's generational staying power"</p>
-                            <cite>– @MemeCultureExpert</cite>
-                        </div>
+                    </div>
+                    
+                    <div class="trading-buttons fade-in-up">
+                        <a href="https://dexscreener.com/solana" class="trading-button primary" target="_blank">
+                            View Full Chart
+                        </a>
+                        <a href="https://jup.ag" class="trading-button secondary" target="_blank">
+                            Trade on Jupiter
+                        </a>
                     </div>
                 </div>
             </div>
@@ -190,30 +170,12 @@
                 
                 <div class="community-grid">
                     <div class="community-card fade-in-up">
-                        <div class="social-icon">🐦</div>
-                        <h4 class="community-title">X (Twitter)</h4>
-                        <p class="community-description">
-                            Follow the latest updates, memes, and community discussions about $KYM-Tan
-                        </p>
-                        <a href="#" class="community-link">Follow @KYMTan</a>
-                    </div>
-                    
-                    <div class="community-card fade-in-up">
                         <div class="social-icon">🎵</div>
                         <h4 class="community-title">TikTok Live</h4>
                         <p class="community-description">
                             Join KYM-Tan's live streams and AMAs where she connects with the community
                         </p>
-                        <a href="#" class="community-link">Watch Live</a>
-                    </div>
-                    
-                    <div class="community-card fade-in-up">
-                        <div class="social-icon">💬</div>
-                        <h4 class="community-title">Discord</h4>
-                        <p class="community-description">
-                            Connect with fellow meme enthusiasts and $KYM-Tan holders
-                        </p>
-                        <a href="#" class="community-link">Join Server</a>
+                        <a href="https://www.tiktok.com/@knowyourmeme/video/7392337049082170666?lang=en" class="community-link" target="_blank">Watch Live</a>
                     </div>
                     
                     <div class="community-card fade-in-up">
@@ -227,22 +189,6 @@
                 </div>
             </div>
 
-            <!-- Meme Submission Form -->
-            <div class="submission-section fade-in-up">
-                <h3 class="submission-title">Share Your KYM-Tan Creation</h3>
-                <form class="submission-form" id="memeSubmissionForm">
-                    <div class="form-group">
-                        <input type="text" id="creatorName" placeholder="Creator Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="url" id="memeUrl" placeholder="Meme URL or Description" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="memeDescription" placeholder="Tell us about your creation..." rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Submit Creation</button>
-                </form>
-            </div>
         </div>
     </section>
 
@@ -277,40 +223,6 @@
         </div>
     </footer>
 
-    <!-- Wallet Connect Modal -->
-    <div class="modal" id="walletModal">
-        <div class="modal-backdrop" onclick="closeModal()"></div>
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()" aria-label="Close modal">&times;</button>
-            
-            <div class="modal-header">
-                <h3 class="modal-title">Join the Meme Revolution</h3>
-                <p class="modal-subtitle">Connect your Solana wallet to begin your journey</p>
-            </div>
-            
-            <div class="modal-body">
-                <p class="modal-description">
-                    Enter the realm where memes become eternal and communities thrive. 
-                    Connect your wallet to access exclusive features and join the $KYM-Tan ecosystem.
-                </p>
-                
-                <div class="wallet-options">
-                    <button class="wallet-button phantom" onclick="connectPhantom()">
-                        <span class="wallet-icon">👻</span>
-                        <span class="wallet-name">Phantom</span>
-                    </button>
-                    <button class="wallet-button solflare" onclick="connectSolflare()">
-                        <span class="wallet-icon">🔥</span>
-                        <span class="wallet-name">Solflare</span>
-                    </button>
-                    <button class="wallet-button other" onclick="connectOther()">
-                        <span class="wallet-icon">🔗</span>
-                        <span class="wallet-name">Other Wallet</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- JavaScript -->
     <script src="main.js"></script>

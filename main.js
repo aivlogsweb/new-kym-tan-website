@@ -30,11 +30,6 @@ const CONFIG = {
     gallery: {
         images: [
             {
-                src: './assets/new-kym-tan-website/qFr4Bnek.jpg',
-                title: 'Heart of the Community',
-                description: 'Holding a heart close to her chest, KYM-Tan represents the love and passion that drives the meme research community. Her caring expression reflects her nurturing role.'
-            },
-            {
                 src: './assets/new-kym-tan-website/5b5fX2Sz.jpg',
                 title: 'Watercolor Serenity',
                 description: 'KYM-Tan in her iconic researcher attire, complete with lab coat, red tie, and her beloved white cat companion. The soft watercolor style captures her gentle nature.'
@@ -51,24 +46,7 @@ const CONFIG = {
             }
         ]
     },
-    quotes: [
-        {
-            text: "Lore runs deep on #KYM-Tan – this is more than a memecoin, it's cultural preservation",
-            author: "@CryptoMemeologist"
-        },
-        {
-            text: "Undervalued gem. Whales accumulating quietly while normies sleep",
-            author: "@DegenTrader_Alpha"
-        },
-        {
-            text: "15+ years of consistent community love. That's generational staying power",
-            author: "@MemeCultureExpert"
-        },
-        {
-            text: "She's not just a mascot; she's the heartbeat of meme culture",
-            author: "@InternetHistorian"
-        }
-    ]
+    // Quotes removed - no longer needed
 };
 
 // ========================================
@@ -77,10 +55,7 @@ const CONFIG = {
 
 const AppState = {
     isLoading: true,
-    currentQuote: 0,
     scrollPosition: 0,
-    countersAnimated: false,
-    modalOpen: false,
     particles: [],
     observers: {}
 };
@@ -139,22 +114,7 @@ const Utils = {
         };
     },
     
-    // Animate number counter
-    animateCounter: (element, start, end, duration = 2000) => {
-        const range = end - start;
-        const increment = end > start ? 1 : -1;
-        const stepTime = Math.abs(Math.floor(duration / range));
-        let current = start;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            element.textContent = current.toLocaleString();
-            
-            if (current === end) {
-                clearInterval(timer);
-            }
-        }, stepTime);
-    },
+    // Removed counter animation - no longer needed
     
     // Check if element is in viewport
     isInViewport: (element, threshold = 0.1) => {
@@ -494,234 +454,11 @@ class GalleryManager {
     }
 }
 
-// ========================================
-// Quote Carousel
-// ========================================
+// Quote Carousel removed - no longer needed
 
-class QuoteCarousel {
-    constructor() {
-        this.container = Utils.$('.quote-carousel');
-        this.currentIndex = 0;
-        this.intervalId = null;
-    }
-    
-    init() {
-        if (!this.container) return;
-        
-        this.renderQuotes();
-        this.startAutoplay();
-    }
-    
-    renderQuotes() {
-        const quotesHTML = CONFIG.quotes.map((quote, index) => `
-            <div class="quote ${index === 0 ? 'active' : ''}" data-index="${index}">
-                <p>"${quote.text}"</p>
-                <cite>– ${quote.author}</cite>
-            </div>
-        `).join('');
-        
-        this.container.innerHTML = quotesHTML;
-    }
-    
-    nextQuote() {
-        const quotes = this.container.querySelectorAll('.quote');
-        
-        quotes[this.currentIndex].classList.remove('active');
-        this.currentIndex = (this.currentIndex + 1) % quotes.length;
-        quotes[this.currentIndex].classList.add('active');
-    }
-    
-    startAutoplay() {
-        this.intervalId = setInterval(() => {
-            this.nextQuote();
-        }, 4000);
-    }
-    
-    stopAutoplay() {
-        if (this.intervalId) {
-            clearInterval(this.intervalId);
-            this.intervalId = null;
-        }
-    }
-    
-    destroy() {
-        this.stopAutoplay();
-    }
-}
+// Modal Manager removed - no longer needed
 
-// ========================================
-// Modal Manager
-// ========================================
-
-class ModalManager {
-    constructor() {
-        this.modal = Utils.$('#walletModal');
-        this.isOpen = false;
-    }
-    
-    init() {
-        if (!this.modal) return;
-        this.setupEventListeners();
-    }
-    
-    setupEventListeners() {
-        // Close modal events
-        const closeButton = this.modal.querySelector('.close-modal');
-        const backdrop = this.modal.querySelector('.modal-backdrop');
-        
-        if (closeButton) {
-            closeButton.addEventListener('click', () => this.close());
-        }
-        
-        if (backdrop) {
-            backdrop.addEventListener('click', () => this.close());
-        }
-        
-        // Escape key to close
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen) {
-                this.close();
-            }
-        });
-    }
-    
-    open() {
-        if (!this.modal || this.isOpen) return;
-        
-        this.modal.style.display = 'block';
-        this.isOpen = true;
-        AppState.modalOpen = true;
-        
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
-        
-        // Focus management
-        const firstFocusable = this.modal.querySelector('button, input, textarea, [tabindex]:not([tabindex="-1"])');
-        if (firstFocusable) {
-            firstFocusable.focus();
-        }
-    }
-    
-    close() {
-        if (!this.modal || !this.isOpen) return;
-        
-        this.modal.style.display = 'none';
-        this.isOpen = false;
-        AppState.modalOpen = false;
-        
-        // Restore body scroll
-        document.body.style.overflow = '';
-    }
-}
-
-// ========================================
-// Form Handler
-// ========================================
-
-class FormHandler {
-    constructor() {
-        this.form = Utils.$('#memeSubmissionForm');
-    }
-    
-    init() {
-        if (!this.form) return;
-        this.setupEventListeners();
-    }
-    
-    setupEventListeners() {
-        this.form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.handleSubmit();
-        });
-    }
-    
-    handleSubmit() {
-        const formData = new FormData(this.form);
-        const data = {
-            creatorName: Utils.$('#creatorName').value,
-            memeUrl: Utils.$('#memeUrl').value,
-            memeDescription: Utils.$('#memeDescription').value
-        };
-        
-        // Validate form
-        if (!this.validateForm(data)) {
-            return;
-        }
-        
-        // Show success message
-        this.showSuccessMessage();
-        
-        // Reset form
-        this.form.reset();
-        
-        // In a real application, you would send this data to a server
-        console.log('Form submitted:', data);
-    }
-    
-    validateForm(data) {
-        const errors = [];
-        
-        if (!data.creatorName.trim()) {
-            errors.push('Creator name is required');
-        }
-        
-        if (!data.memeUrl.trim()) {
-            errors.push('Meme URL is required');
-        }
-        
-        if (!data.memeDescription.trim()) {
-            errors.push('Description is required');
-        }
-        
-        if (errors.length > 0) {
-            this.showErrors(errors);
-            return false;
-        }
-        
-        return true;
-    }
-    
-    showErrors(errors) {
-        // Create or update error display
-        let errorContainer = Utils.$('.form-errors');
-        
-        if (!errorContainer) {
-            errorContainer = document.createElement('div');
-            errorContainer.className = 'form-errors';
-            this.form.insertBefore(errorContainer, this.form.firstChild);
-        }
-        
-        errorContainer.innerHTML = `
-            <ul>
-                ${errors.map(error => `<li>${error}</li>`).join('')}
-            </ul>
-        `;
-        
-        // Remove errors after 5 seconds
-        setTimeout(() => {
-            if (errorContainer.parentNode) {
-                errorContainer.parentNode.removeChild(errorContainer);
-            }
-        }, 5000);
-    }
-    
-    showSuccessMessage() {
-        const successMessage = document.createElement('div');
-        successMessage.className = 'form-success';
-        successMessage.innerHTML = `
-            <p>✨ Thank you for your submission! Your creation has been sent to the KYM-Tan community.</p>
-        `;
-        
-        this.form.insertBefore(successMessage, this.form.firstChild);
-        
-        // Remove success message after 5 seconds
-        setTimeout(() => {
-            if (successMessage.parentNode) {
-                successMessage.parentNode.removeChild(successMessage);
-            }
-        }, 5000);
-    }
-}
+// Form Handler removed - no longer needed
 
 // ========================================
 // Scroll Effects
@@ -813,126 +550,7 @@ class LoadingManager {
     }
 }
 
-// ========================================
-// Wallet Integration
-// ========================================
-
-class WalletManager {
-    constructor() {
-        this.connectedWallet = null;
-        this.modalManager = null;
-    }
-    
-    init(modalManager) {
-        this.modalManager = modalManager;
-    }
-    
-    async connectPhantom() {
-        try {
-            if (window.solana && window.solana.isPhantom) {
-                const response = await window.solana.connect();
-                this.connectedWallet = {
-                    type: 'phantom',
-                    publicKey: response.publicKey.toString()
-                };
-                this.onWalletConnected();
-            } else {
-                this.showWalletNotFound('Phantom');
-            }
-        } catch (error) {
-            this.showConnectionError(error);
-        }
-    }
-    
-    async connectSolflare() {
-        try {
-            if (window.solflare && window.solflare.isSolflare) {
-                const response = await window.solflare.connect();
-                this.connectedWallet = {
-                    type: 'solflare',
-                    publicKey: response.publicKey.toString()
-                };
-                this.onWalletConnected();
-            } else {
-                this.showWalletNotFound('Solflare');
-            }
-        } catch (error) {
-            this.showConnectionError(error);
-        }
-    }
-    
-    connectOther() {
-        this.showComingSoon();
-    }
-    
-    onWalletConnected() {
-        this.modalManager.close();
-        this.showSuccessNotification();
-        
-        // Update UI to show connected state
-        this.updateConnectedUI();
-    }
-    
-    showWalletNotFound(walletName) {
-        alert(`${walletName} wallet not found. Please install the ${walletName} browser extension.`);
-    }
-    
-    showConnectionError(error) {
-        console.error('Wallet connection error:', error);
-        alert('Failed to connect wallet. Please try again.');
-    }
-    
-    showComingSoon() {
-        alert('Additional wallet integrations coming soon!');
-    }
-    
-    showSuccessNotification() {
-        const notification = document.createElement('div');
-        notification.className = 'wallet-notification success';
-        notification.innerHTML = `
-            <div class="notification-content">
-                <span class="notification-icon">✅</span>
-                <span class="notification-text">Wallet connected successfully!</span>
-            </div>
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-        
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
-    }
-    
-    updateConnectedUI() {
-        // Update CTA buttons to show connected state
-        const ctaButtons = Utils.$$('.cta-button.primary');
-        ctaButtons.forEach(button => {
-            if (button.textContent.includes('Join')) {
-                button.textContent = 'Connected ✓';
-                button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-            }
-        });
-    }
-    
-    disconnect() {
-        this.connectedWallet = null;
-        // Reset UI
-        const ctaButtons = Utils.$$('.cta-button.primary');
-        ctaButtons.forEach(button => {
-            if (button.textContent.includes('Connected')) {
-                button.textContent = 'Join the Meme Revolution';
-                button.style.background = 'var(--gradient-primary)';
-            }
-        });
-    }
-}
+// Wallet Integration removed - no longer needed
 
 // ========================================
 // Main Application Class
@@ -945,11 +563,7 @@ class KYMTanApp {
             particleSystem: new ParticleSystem(),
             animationController: new AnimationController(),
             galleryManager: new GalleryManager(),
-            quoteCarousel: new QuoteCarousel(),
-            modalManager: new ModalManager(),
-            formHandler: new FormHandler(),
-            scrollEffects: new ScrollEffects(),
-            walletManager: new WalletManager()
+            scrollEffects: new ScrollEffects()
         };
         
         this.isInitialized = false;
@@ -984,8 +598,7 @@ class KYMTanApp {
             }
         });
         
-        // Setup component connections
-        this.components.walletManager.init(this.components.modalManager);
+        // Component connections no longer needed
         
         // Start animations and effects
         this.components.animationController.observeElements();
@@ -1022,13 +635,7 @@ class KYMTanApp {
     }
     
     handleVisibilityChange() {
-        if (document.hidden) {
-            // Pause animations when tab is not visible
-            this.components.quoteCarousel.stopAutoplay();
-        } else {
-            // Resume animations when tab becomes visible
-            this.components.quoteCarousel.startAutoplay();
-        }
+        // Visibility change handling simplified - no components to pause/resume
     }
     
     destroy() {
@@ -1043,39 +650,7 @@ class KYMTanApp {
     }
 }
 
-// ========================================
-// Global Functions (for HTML onclick handlers)
-// ========================================
-
-function openModal() {
-    if (window.kymTanApp && window.kymTanApp.components.modalManager) {
-        window.kymTanApp.components.modalManager.open();
-    }
-}
-
-function closeModal() {
-    if (window.kymTanApp && window.kymTanApp.components.modalManager) {
-        window.kymTanApp.components.modalManager.close();
-    }
-}
-
-function connectPhantom() {
-    if (window.kymTanApp && window.kymTanApp.components.walletManager) {
-        window.kymTanApp.components.walletManager.connectPhantom();
-    }
-}
-
-function connectSolflare() {
-    if (window.kymTanApp && window.kymTanApp.components.walletManager) {
-        window.kymTanApp.components.walletManager.connectSolflare();
-    }
-}
-
-function connectOther() {
-    if (window.kymTanApp && window.kymTanApp.components.walletManager) {
-        window.kymTanApp.components.walletManager.connectOther();
-    }
-}
+// Global Functions removed - no longer needed
 
 // ========================================
 // Application Initialization
